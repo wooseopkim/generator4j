@@ -1,9 +1,12 @@
 {
-  "editor.codeActionsOnSave": {
-    "source.fixAll": "explicit",
-    "source.organizeImports": "explicit"
-  },
   "[java]": {
     "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle"
+  },
+  "editor.codeActionsOnSave": {
+    "source": "explicit"
+  },
+  "editor.defaultFormatter": "EditorConfig.EditorConfig",
+  "linter-actionlint.config": {
+    "enabled": true
   }
 }
