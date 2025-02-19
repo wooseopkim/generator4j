@@ -7,8 +7,6 @@ import java.util.stream.StreamSupport;
 
 public final class Generator<T> implements Iterable<T>, AutoCloseable {
 
-    private static final Function<Runnable, Thread> DEFAULT_THREAD_PROVIDER =
-            (runnable) -> Thread.ofVirtual().unstarted(runnable);
     private final Function<Runnable, Thread> threadProvider;
     private Optional<Thread> producer = Optional.empty();
     private Optional<T> nextItem = Optional.empty();
@@ -17,8 +15,12 @@ public final class Generator<T> implements Iterable<T>, AutoCloseable {
     private final AsyncCondition itemRequested = new AsyncCondition();
     private final Body<T> body;
 
+    private static final Thread defaultThreadProvider(Runnable runnable) {
+        return Thread.ofVirtual().unstarted(runnable);
+    }
+
     public Generator(Body<T> body) {
-        this(DEFAULT_THREAD_PROVIDER, body);
+        this(Generator::defaultThreadProvider, body);
     }
 
     public Generator(Function<Runnable, Thread> threadProvider, Body<T> body) {

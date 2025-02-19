@@ -162,7 +162,7 @@ public class GeneratorTest {
             return thread;
         };
         var generator = new Generator<Integer>(threadProvider, (ctx) -> ctx.yield(1));
-        generator.iterator().hasNext();
+        assertTrue(generator.iterator().hasNext());
         var thread = threadReference.get();
 
         assertNotEquals(Thread.State.TERMINATED, thread.getState());
@@ -177,7 +177,7 @@ public class GeneratorTest {
         try (var generator = new Generator<String>((ctx) -> executed.set(true))) {
 
             assertFalse(executed.get());
-            generator.iterator().hasNext();
+            assertFalse(generator.iterator().hasNext());
 
             assertTrue(executed.get());
         } catch (Exception e) {

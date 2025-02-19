@@ -4,11 +4,14 @@
  * This generated file contains a sample Java library project to get you started.
  * For more details on building Java & JVM projects, please refer to https://docs.gradle.org/8.9/userguide/building_java_projects.html in the Gradle documentation.
  */
+import net.ltgt.gradle.errorprone.errorprone
+import net.ltgt.gradle.errorprone.CheckSeverity
 
 plugins {
     // Apply the java-library plugin for API and implementation separation.
     `java-library`
-    alias(libs.plugins.spotless.gradle)
+    alias(libs.plugins.spotless)
+    alias(libs.plugins.errorprone)
 }
 
 repositories {
@@ -17,6 +20,10 @@ repositories {
 }
 
 dependencies {
+    errorprone(libs.errorprone.core)
+    errorprone(libs.nullaway)
+    implementation(libs.jspecify)
+
     // Use JUnit Jupiter for testing.
     testImplementation(libs.junit.jupiter)
 
@@ -33,6 +40,15 @@ java {
 tasks.named<Test>("test") {
     // Use JUnit Platform for unit tests.
     useJUnitPlatform()
+}
+
+tasks.withType<JavaCompile>().configureEach {
+    options.errorprone {
+      allErrorsAsWarnings = true
+
+      check("NullAway", CheckSeverity.ERROR)
+      option("NullAway:OnlyNullMarked", true)
+    }
 }
 
 spotless {
