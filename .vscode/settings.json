@@ -2,11 +2,26 @@
   "[java]": {
     "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle"
   },
+  "[nix]": {
+    "editor.defaultFormatter": "jnoortheen.nix-ide"
+  },
+  "direnv.restart.automatic": true,
   "editor.codeActionsOnSave": {
     "source": "explicit"
   },
   "editor.defaultFormatter": "EditorConfig.EditorConfig",
   "linter-actionlint.config": {
     "enabled": true
+  },
+  "nix.enableLanguageServer": true,
+  "nix.serverPath": "nil",
+  "nix.serverSettings": {
+    "nil": {
+      "formatting": {
+        "command": [
+          "nixfmt"
+        ]
+      }
+    }
   }
 }
