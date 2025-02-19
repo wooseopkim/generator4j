@@ -11,8 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        distribution: [oracle, temurin, graalvm, microsoft, corretto]
+        distribution: [oracle, temurin, graalvm, microsoft, corretto, jetbrains]
         java-version: ['21']
+        exclude:
+          - distribution: ${{ vars.ACT && 'jetbrains' || null }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
