@@ -3,6 +3,11 @@
 
 [versions]
 junit-jupiter = "5.10.2"
+spotless-gradle = "7.0.2"
+
+[plugins]
+spotless-gradle = { id = "com.diffplug.spotless", version.ref = "spotless-gradle" }
 
 [libraries]
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter", version.ref = "junit-jupiter" }
+
