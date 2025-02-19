@@ -10,6 +10,7 @@
     "source": "explicit"
   },
   "editor.defaultFormatter": "EditorConfig.EditorConfig",
+  "editor.formatOnSave": true,
   "linter-actionlint.config": {
     "enabled": true
   },
