@@ -1,13 +1,16 @@
 let
   pkgs = import <nixpkgs> { };
+  java = pkgs.graalvmPackages.graalvm-ce;
 in
 with pkgs;
 mkShell {
   packages = [
-    graalvmPackages.graalvm-ce
+    java
     act
     actionlint
     nixfmt-rfc-style
     nil
   ];
+
+  JAVA_HOME = "${java}";
 }
