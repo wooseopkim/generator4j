@@ -14,7 +14,7 @@ repositories {
 dependencies {
     errorprone(libs.errorprone.core)
     errorprone(libs.nullaway)
-    implementation(libs.jspecify)
+    errorprone(libs.jspecify)
 
     testImplementation(libs.junit.jupiter)
 
