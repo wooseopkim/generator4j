@@ -7,7 +7,7 @@ import java.util.function.Function;
 
 abstract class AsyncIterator<T> implements Iterator<T> {
 
-    private final AtomicReference<RuntimeException> thrown = new AtomicReference<>();
+    private final AtomicReference<Exception> thrown = new AtomicReference<>();
     private final Function<Runnable, Thread> threadProvider;
     private final AsyncCondition itemRequested;
     private final AsyncCondition itemReadable;
@@ -62,8 +62,7 @@ abstract class AsyncIterator<T> implements Iterator<T> {
         } catch (InterruptedException ignored) {
             onFinish();
         }
-        var e = thrown.get();
-        if (e != null) {
+        if (thrown.get() instanceof RuntimeException e) {
             throw e;
         }
         return !hasFinished();
@@ -74,8 +73,7 @@ abstract class AsyncIterator<T> implements Iterator<T> {
             try {
                 itemRequested.await();
                 iterate();
-            } catch (InterruptedException ignored) {
-            } catch (RuntimeException e) {
+            } catch (InterruptedException | RuntimeException e) {
                 thrown.set(e);
             }
             onFinish();
