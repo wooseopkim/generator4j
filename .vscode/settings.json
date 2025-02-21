@@ -1,5 +1,10 @@
 {
   "[java]": {
+    "editor.codeActionsOnSave": {
+      "source": "never",
+      "source.fixAll.spotlessGradle": "explicit",
+      "source.organizeImports": "explicit"
+    },
     "editor.defaultFormatter": "richardwillis.vscode-spotless-gradle"
   },
   "[nix]": {
