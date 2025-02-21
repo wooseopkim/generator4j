@@ -28,6 +28,7 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       - run: ./gradlew check
       - run: ./gradlew test
-      - run: ./gradlew publish
+      - if: matrix.distribution == 'temurin' && matrix.java-version == '21'
+        run: ./gradlew publish
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
