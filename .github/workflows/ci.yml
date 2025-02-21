@@ -9,6 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     strategy:
       matrix:
         distribution: [oracle, temurin, graalvm, microsoft, corretto, jetbrains]
@@ -25,3 +28,6 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       - run: ./gradlew check
       - run: ./gradlew test
+      - run: ./gradlew publish
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

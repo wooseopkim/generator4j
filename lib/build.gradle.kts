@@ -3,6 +3,7 @@ import net.ltgt.gradle.errorprone.CheckSeverity
 
 plugins {
     `java-library`
+    `maven-publish`
     alias(libs.plugins.spotless)
     alias(libs.plugins.errorprone)
 }
@@ -51,4 +52,26 @@ spotless {
     palantirJavaFormat()
     formatAnnotations()
   }
+}
+
+version = "0.0.1"
+
+// https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-gradle-registry
+publishing {
+    repositories {
+        maven {
+            val githubActor = System.getenv("GITHUB_ACTOR")
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/${githubActor}/generator4j")
+            credentials {
+                username = githubActor
+                password = System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+    publications {
+        create<MavenPublication>("gpr") {
+            from(components["java"])
+        }
+    }
 }
