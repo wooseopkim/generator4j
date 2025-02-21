@@ -38,7 +38,7 @@ tasks.withType<JavaCompile>().configureEach {
       disable("WaitNotInLoop")
       disable("NamedLikeContextualKeyword")
 
-      check("NullAway", CheckSeverity.ERROR)
+      error("NullAway")
       option("NullAway:OnlyNullMarked", true)
     }
 }
