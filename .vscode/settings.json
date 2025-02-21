@@ -16,6 +16,7 @@
   },
   "editor.defaultFormatter": "EditorConfig.EditorConfig",
   "editor.formatOnSave": true,
+  "java.configuration.updateBuildConfiguration": "automatic",
   "linter-actionlint.config": {
     "enabled": true
   },
