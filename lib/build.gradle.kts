@@ -35,6 +35,9 @@ tasks.withType<JavaCompile>().configureEach {
     options.errorprone {
       allErrorsAsWarnings = true
 
+      disable("WaitNotInLoop")
+      disable("NamedLikeContextualKeyword")
+
       check("NullAway", CheckSeverity.ERROR)
       option("NullAway:OnlyNullMarked", true)
     }
