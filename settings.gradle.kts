@@ -3,5 +3,3 @@ plugins {
 }
 
 rootProject.name = "generator4j"
-include("lib")
-

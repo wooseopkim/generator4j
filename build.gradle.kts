@@ -54,6 +54,7 @@ spotless {
   }
 }
 
+group = "kim.wooseop"
 version = "0.0.1"
 
 // https://docs.github.com/en/packages/working-with-a-github-packages-registry/working-with-the-gradle-registry
